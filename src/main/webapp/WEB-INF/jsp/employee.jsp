@@ -16,28 +16,33 @@
 
 </head>
 <body>
-
-	<nav class="navbar navbar-inverse">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Spring Boot</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
 	<div class="container">
-
 		<div class="starter-template">
-			<h1>Spring Boot Web JSP Example</h1>
-			<!--  h2>Message: ${message}</h2 -->
+			<table border=1 >
+				<tr>
+					<th>first Name</th>
+					<th>Last name</th>
+					<th>NI Number</th>
+					<th>Date Of Birth</th>
+					<th>Employment Start Date</th>
+					<th>salary</th>
+					<th>Employee Contribution</th>
+					<th>Employer Contribution</th>
+				</tr>
+				<c:forEach items="${lOfEmployees}" var="employee">
+					<tr>
+						<td>${employee.firstName}</td>
+						<td>${employee.lastName}</td>
+						<td>${employee.niNumber}</td>
+						<td>${employee.dateOfBirth}</td>
+						<td>${employee.employmentStartDate}</td>
+						<td>${employee.salary}</td>
+						<td>${employee.employeeContribution}</td>
+						<td>${employee.employerContribution}</td>
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
-
 	</div>
 	<!-- /.container -->
 
