@@ -17,7 +17,7 @@ public class LoadDataTest {
 	public void loadDataTest1() {
 
 		try {
-			List<Employee> lOfEmployees = loadData.readFile("/Users/dave/Downloads/pensionScheme/src/test/resources/employee.csv");
+			List<Employee> lOfEmployees = loadData.readFile("src/test/resources/employee.csv");
 			for (Employee employee : lOfEmployees) {
 				System.out.println(employee.toString());
 			}

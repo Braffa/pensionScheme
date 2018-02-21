@@ -19,7 +19,7 @@ public class PensionSchemeController {
 		List<Employee> lOfEmployees = new ArrayList<Employee>();
 		
 		try {
-			lOfEmployees = loadData.readFile("/Users/dave/Downloads/pensionScheme/src/test/resources/employee.csv");
+			lOfEmployees = loadData.readFile("src/test/resources/employee.csv");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

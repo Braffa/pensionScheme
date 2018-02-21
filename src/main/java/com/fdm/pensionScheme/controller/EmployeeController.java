@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fdm.pensionScheme.beans.Employee;
@@ -27,7 +26,7 @@ public class EmployeeController {
 		List<Employee> lOfEmployees = new ArrayList<Employee>();
 		
 		try {
-			lOfEmployees = loadData.readFile("/Users/dave/Downloads/pensionScheme/src/test/resources/employee.csv");
+			lOfEmployees = loadData.readFile("src/test/resources/employee.csv");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
