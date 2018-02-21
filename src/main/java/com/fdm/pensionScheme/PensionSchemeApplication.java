@@ -7,6 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 public class PensionSchemeApplication extends SpringBootServletInitializer {
+	
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(PensionSchemeApplication.class);

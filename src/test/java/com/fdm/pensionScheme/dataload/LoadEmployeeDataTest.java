@@ -9,9 +9,9 @@ import org.junit.Test;
 
 import com.fdm.pensionScheme.beans.Employee;
 
-public class LoadDataTest {
+public class LoadEmployeeDataTest {
 	
-	LoadData loadData = new LoadData();
+	LoadEmployeeData loadData = new LoadEmployeeData();
 
 	@Test
 	public void loadDataTest1() {

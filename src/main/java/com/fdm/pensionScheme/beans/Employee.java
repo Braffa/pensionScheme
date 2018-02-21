@@ -1,6 +1,8 @@
 package com.fdm.pensionScheme.beans;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Employee {
 
@@ -12,6 +14,8 @@ public class Employee {
 	double salary;
 	double employeeContribution;
 	double employerContribution;
+	
+	List<Charity> charities; 
 
 	public Employee(String firstName, String lastName, String niNumber, LocalDate dateOfBirth,
 			LocalDate employmentStartDate, double salary, double employeeContribution, double employerContribution) {
@@ -24,6 +28,7 @@ public class Employee {
 		this.salary = salary;
 		this.employeeContribution = employeeContribution;
 		this.employerContribution = employerContribution;
+		this.charities = new ArrayList<Charity>();
 	}
 
 	public String getFirstName() {
@@ -89,13 +94,23 @@ public class Employee {
 	public void setEmployerContribution(double employerContribution) {
 		this.employerContribution = employerContribution;
 	}
+	
+	
+
+	public List<Charity> getCharities() {
+		return charities;
+	}
+
+	public void setCharities(List<Charity> charities) {
+		this.charities = charities;
+	}
 
 	@Override
 	public String toString() {
 		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", niNumber=" + niNumber
 				+ ", dateOfBirth=" + dateOfBirth + ", employmentStartDate=" + employmentStartDate + ", salary=" + salary
 				+ ", employeeContribution=" + employeeContribution + ", employerContribution=" + employerContribution
-				+ "]";
+				+ ", charities=" + charities + "]";
 	}
 
 }

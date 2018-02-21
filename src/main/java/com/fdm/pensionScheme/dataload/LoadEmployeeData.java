@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 import com.fdm.pensionScheme.beans.Employee;
 
-public class LoadData {
+public class LoadEmployeeData {
 
 	public List<Employee>  readFile(String filePath) throws FileNotFoundException {
 		List<Employee> lOfEmployees = new ArrayList<Employee>();
