@@ -1,42 +1,44 @@
-<!DOCTYPE html>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
+	<%-- jsp directives --%>
+	<%@ page isELIgnored="false" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" type="text/css"
-	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-
-<!-- 
-	<spring:url value="/css/main.css" var="springCss" />
-	<link href="${springCss}" rel="stylesheet" />
-	 -->
-<c:url value="/css/main.css" var="jstlCss" />
-<link href="${jstlCss}" rel="stylesheet" />
-
+	<title>Charities</title>
 </head>
+
 <body>
-	<div class="container">
-		<div class="starter-template">
-			<table border=1 >
-				<tr>
-					<th>Charity Name</th>
-					<th>Charity Number</th>
-				</tr>
-				<c:forEach items="${lOfCharities}" var="charity">
-					<tr>
-						<td>${charity.charityName}</td>
-						<td>${charity.charityId}</td>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
-	</div>
-	<!-- /.container -->
 
-	<script type="text/javascript"
-		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<h2>Charities to assign to employee</h2>
 
+<form name="assign" action=/asignCharities method="post" >
+
+	<table border="1" cellpadding="5">
+	<tr>
+		<th scope="col">Charity ID</th>
+		<th scope="col">Charity NameRoom</th>
+		<th scope="col">Select</th>
+	</tr>
+
+	<c:forEach var="charity" items="${charityForm.charities}" varStatus="status">
+	<tr>
+		<td>${charity.charityId}</td>
+		<td>${charity.charityName}</td>
+		<td><INPUT TYPE="checkbox" NAME="check" VALUE="${status.count}">
+		<input type="hidden" name="charityId" value="${charity.charityId}"></td>
+	</tr>	
+		
+	</c:forEach>
+		
+	</table>
+
+<br><br>
+
+<input type="submit" name="assignButton" value="Assign">
+<input type="hidden" name="empId" value="${empId}">	
+
+</form>
 </body>
-
-</html>
+</html>	
+	

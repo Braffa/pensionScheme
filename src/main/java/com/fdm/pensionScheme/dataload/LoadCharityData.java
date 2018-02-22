@@ -45,7 +45,7 @@ public class LoadCharityData {
 
 	private Charity createCharity(String[] charityDetails) {
 		String charityName = charityDetails[0];
-		String charityId = charityDetails[1];
-		return new Charity(charityName, charityId);
+		int charityId = Integer.parseInt(charityDetails[1]);
+		return new Charity(charityId, charityName);
 	}
 }

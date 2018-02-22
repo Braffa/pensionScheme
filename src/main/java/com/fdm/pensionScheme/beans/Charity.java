@@ -2,10 +2,10 @@ package com.fdm.pensionScheme.beans;
 
 public class Charity {
 
+	int charityId;
 	String charityName;
-	String charityId;
 
-	public Charity(String charityName, String charityId) {
+	public Charity(int charityId, String charityName) {
 		super();
 		this.charityName = charityName;
 		this.charityId = charityId;
@@ -19,17 +19,19 @@ public class Charity {
 		this.charityName = charityName;
 	}
 
-	public String getCharityId() {
+	public int getCharityId() {
 		return charityId;
 	}
 
-	public void setCharityId(String charityId) {
+	public void setCharityId(int charityId) {
 		this.charityId = charityId;
 	}
 
 	@Override
 	public String toString() {
-		return "Charity [charityName=" + charityName + ", charityId=" + charityId + "]";
+		return "Charity [charityId=" + charityId + ", charityName=" + charityName + "]";
 	}
+
+
 
 }

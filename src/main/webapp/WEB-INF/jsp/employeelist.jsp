@@ -28,10 +28,9 @@
 					<th>salary</th>
 					<th>Employee Contribution</th>
 					<th>Employer Contribution</th>
-					<th>Charities</th>
 				</tr>
 				<c:forEach items="${lOfEmployees}" var="employee">
-					<tr> 
+					<tr>
 						<td>${employee.firstName}</td>
 						<td>${employee.lastName}</td>
 						<td>${employee.niNumber}</td>
@@ -40,20 +39,6 @@
 						<td>${employee.salary}</td>
 						<td>${employee.employeeContribution}</td>
 						<td>${employee.employerContribution}</td>
-						<td>
-						<form name="addCharity" action="/charity" method="get">
-							<table>
-								<c:forEach items="${employee.charities}" var="charity">
-								<tr><td>${charity}</td></tr>
-								</c:forEach>
-								<tr>
-								<td>
-								<input type="Submit" value="Add Charity">
-								<input type="hidden" name="empId" value="${employee.niNumber}">
-								</td></tr>
-							</table>
-						</form>
-						</td>
 					</tr>
 				</c:forEach>
 			</table>

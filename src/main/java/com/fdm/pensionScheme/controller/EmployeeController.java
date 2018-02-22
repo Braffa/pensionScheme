@@ -17,6 +17,25 @@ import com.fdm.pensionScheme.dataload.LoadEmployeeData;
 public class EmployeeController {
 	
 	@RequestMapping(value = "/employee")
+	public String welcome(Map<String, Object> model) {
+		System.out.println("Got here");
+		
+		LoadEmployeeData loadEmployeeData = new LoadEmployeeData();
+		List<Employee> lOfEmployees = new ArrayList<Employee>();
+		
+		try {
+			lOfEmployees = loadEmployeeData.readFile("src/test/resources/employee.csv");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 
+		model.put("lOfEmployees",  lOfEmployees);
+		return "employee";
+		
+	}
+	
+	@RequestMapping(value = "/employeelist")
 	public String getEmployees(Map<String, Object> model) {
 		
 		LoadEmployeeData loadEmployeeData = new LoadEmployeeData();
@@ -34,10 +53,11 @@ public class EmployeeController {
 		}
 		model.put("lOfEmployees",  lOfEmployees);
 		model.put("lOfCharities",  lOfCharities);
-		return "employee";
+		return "employeelist";
 		
 	}
-	@RequestMapping(value = "/charity")
+	
+	@RequestMapping(value = "/charitylist")
 	public String getCharities(Map<String, Object> model) {
 
 		LoadCharityData loadCharityData = new LoadCharityData();
@@ -50,7 +70,7 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 		model.put("lOfCharities",  lOfCharities);
-		return "charity";
+		return "charitylist";
 		
 	}
 }
