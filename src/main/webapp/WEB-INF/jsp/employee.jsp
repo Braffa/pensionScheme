@@ -30,7 +30,7 @@
 					<th>Employer Contribution</th>
 					<th>Charities</th>
 				</tr>
-				<c:forEach items="${lOfEmployees}" var="employee">
+				<c:forEach items="${employeeForm.getEmployees()}" var="employee">
 					<tr> 
 						<td>${employee.firstName}</td>
 						<td>${employee.lastName}</td>

@@ -7,17 +7,19 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fdm.pensionScheme.beans.Charity;
 import com.fdm.pensionScheme.beans.Employee;
 import com.fdm.pensionScheme.dataload.LoadCharityData;
 import com.fdm.pensionScheme.dataload.LoadEmployeeData;
+import com.fdm.pensionScheme.form.EmployeeForm;
 
 @Controller
 public class EmployeeController {
 	
 	@RequestMapping(value = "/employee")
-	public String welcome(Map<String, Object> model) {
+	public ModelAndView welcome(Map<String, Object> model) {
 		System.out.println("Got here");
 		
 		LoadEmployeeData loadEmployeeData = new LoadEmployeeData();
@@ -30,8 +32,13 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
  
-		model.put("lOfEmployees",  lOfEmployees);
-		return "employee";
+		EmployeeForm employeeForm = new EmployeeForm();
+		employeeForm.setEmployees(lOfEmployees);
+		System.out.println(lOfEmployees.size());
+		
+		return new ModelAndView("employee", "employeeForm", employeeForm);
+	//	model.put("lOfEmployees",  lOfEmployees);
+	//	return "employee";
 		
 	}
 	

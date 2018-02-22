@@ -95,7 +95,9 @@ public class Employee {
 		this.employerContribution = employerContribution;
 	}
 	
-	
+	public void addCharities(Charity charity) {
+		this.charities.add(charity);
+	}
 
 	public List<Charity> getCharities() {
 		return charities;

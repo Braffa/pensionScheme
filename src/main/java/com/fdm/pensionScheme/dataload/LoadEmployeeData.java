@@ -48,7 +48,7 @@ public class LoadEmployeeData {
 		String niNumber = employeeDetails[2];
 
 		LocalDate dateOfBirth = getDate(employeeDetails[3]);
-		LocalDate employmentStartDate = getDate(employeeDetails[3]);
+		LocalDate employmentStartDate = getDate(employeeDetails[4]);
 
 		double salary = Double.parseDouble(employeeDetails[5]);
 		double employeeContribution = Double.parseDouble(employeeDetails[6]);
