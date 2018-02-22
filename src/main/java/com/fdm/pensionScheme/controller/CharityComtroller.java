@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +24,7 @@ public class CharityComtroller {
 
 	@RequestMapping(value = "/charity", method = RequestMethod.GET)
 	public ModelAndView getCharities(@RequestParam String empId, Map<String, Object> model) {
-		System.out.println("Got here -Charities");
+		System.out.println("Got here - getCharities  " + empId);
 
 		// model.put("charties", charities);
 		// model.put("empId",empId);
@@ -37,19 +39,29 @@ public class CharityComtroller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		charityForm.setEmpId(empId);
 		charityForm.setCharities(lOfCharities);
 		return new ModelAndView("charity", "charityForm", charityForm);
 
 	}
 
-	@RequestMapping(value = "/asignCharities", method = RequestMethod.POST, consumes = "application/json")
-	public String assignCharities(@RequestBody CharityForm charityForm,
-
-			ModelMap model) {
-		System.out.println("Get here- assigning charities");
+/*	@RequestMapping(value = "/asignCharities", method = RequestMethod.POST, consumes = "application/json")
+	public String assignCharities(@RequestBody CharityForm charityForm, ModelMap model) {
+		System.out.println("Get here- asignCharities");
 		System.out.println(charityForm);
 		System.out.println(charityForm.getCharities());
+
+		return "assigned";
+
+	}*/
+	
+	@RequestMapping(value = "/asignCharities", method = RequestMethod.POST)
+	public String assignCharities(@ModelAttribute("charityId") String charityId, 
+			@ModelAttribute("empId") String empId, 
+			BindingResult result, ModelMap model) {
+		System.out.println("Get here- asignCharities");
+		System.out.println(charityId);
+		System.out.println(empId);
 
 		return "assigned";
 

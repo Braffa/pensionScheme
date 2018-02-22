@@ -34,9 +34,9 @@
 	</table>
 
 <br><br>
-
+dave ${charityForm.empId}<br>
 <input type="submit" name="assignButton" value="Assign">
-<input type="hidden" name="empId" value="${empId}">	
+<input type="hidden" name="empId" value="${charityForm.empId}">	
 
 </form>
 </body>
