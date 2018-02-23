@@ -44,7 +44,7 @@
 						<form name="addCharity" action="/charity" method="get">
 							<table>
 								<c:forEach items="${employee.charities}" var="charity">
-								<tr><td>${charity}</td></tr>
+								<tr><td>${charity.charityName}</td></tr>
 								</c:forEach>
 								<tr>
 								<td>
