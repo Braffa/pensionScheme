@@ -29,8 +29,6 @@ public class CharityComtroller {
 	public ModelAndView getCharities(@RequestParam String empId, Map<String, Object> model) {
 		System.out.println("Got here - getCharities  " + empId);
 
-		// model.put("charties", charities);
-		// model.put("empId",empId);
 
 		CharityForm charityForm = new CharityForm();
 		List<Charity> lOfCharities = getAllCharities();
@@ -40,23 +38,14 @@ public class CharityComtroller {
 
 	}
 
-/*	@RequestMapping(value = "/asignCharities", method = RequestMethod.POST, consumes = "application/json")
-	public String assignCharities(@RequestBody CharityForm charityForm, ModelMap model) {
-		System.out.println("Get here- asignCharities");
-		System.out.println(charityForm);
-		System.out.println(charityForm.getCharities());
-
-		return "assigned";
-
-	}*/
 	
 	@RequestMapping(value = "/asignCharities", method = RequestMethod.POST)
-	public ModelAndView assignCharities(@ModelAttribute("charityId") String charityId, 
+	public ModelAndView assignCharities(@ModelAttribute("chId") String charityId, 
 			@ModelAttribute("empId") String empId, 
 			BindingResult result, ModelMap model) {
 		System.out.println("Get here- asignCharities");
-		System.out.println(charityId);
-		System.out.println(empId);
+		System.out.println("charity id " + charityId);
+		System.out.println("empId " + empId);
 		
 		List<Employee> employees = assignCharity(empId, charityId);
 		

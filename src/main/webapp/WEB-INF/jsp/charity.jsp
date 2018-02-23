@@ -6,6 +6,16 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<title>Charities</title>
+<script>
+var charityId = 0;
+function myFunction () {
+	document.getElementById("chId").value = charityId;
+	document.assign.submit();
+}
+function setcharity(id) {
+	charityId = id;
+}
+</script>
 </head>
 
 <body>
@@ -25,19 +35,17 @@
 	<tr>
 		<td>${charity.charityId}</td>
 		<td>${charity.charityName}</td>
-		<td><INPUT TYPE="checkbox" NAME="check" VALUE="${status.count}">
-		<input type="hidden" name="charityId" value="${charity.charityId}"></td>
+		<td><INPUT TYPE="checkbox" name="check" id="check${status.count}" VALUE="${charity.charityId}" onClick="setcharity(${charity.charityId})">
+		<input type="hidden" id="myCharityId"  value="${charity.charityId}"></td>
 	</tr>	
-		
 	</c:forEach>
 		
 	</table>
 
 <br><br>
-
-<input type="submit" name="assignButton" value="Assign">
+<input type="button" name="assignButton" value="mySubmit" onClick="myFunction()">
 <input type="hidden" name="empId" value="${charityForm.empId}">	
-
+<input type="hidden" name="chId"  id="chId" >	
 </form>
 </body>
 </html>	
