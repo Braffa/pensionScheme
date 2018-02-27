@@ -1,5 +1,6 @@
 package com.fdm.pensionScheme.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,23 +27,15 @@ public class CharityComtroller {
 
 	@RequestMapping(value = "/charity", method = RequestMethod.GET)
 	public ModelAndView getCharities(HttpSession session, @RequestParam String empId, Map<String, Object> model) {
-		System.out.println("Got here - getCharities  " + empId);
-
-		List<Employee> lOfEmployees  = (List<Employee>)session.getAttribute("lOfEmployees");
-		for (Employee e : lOfEmployees) {
-			System.out.println(e.toString());
+		Map<Integer, Charity> mOfCharities = (Map<Integer, Charity>)session.getAttribute("mOfCharities");
+		List<Charity> lOfCharities = new ArrayList<Charity>();
+		for (Map.Entry<Integer, Charity> entry : mOfCharities.entrySet()) {
+			lOfCharities.add(entry.getValue());
 		}
-
-		List<Charity> lOfMyCharities = (List<Charity>)session.getAttribute("lOfCharities");
-		for (Charity c : lOfMyCharities) {
-			System.out.println(c.toString());
-		}
-
 		CharityForm charityForm = new CharityForm();
 		charityForm.setEmpId(empId);
-		charityForm.setCharities(lOfMyCharities);
+		charityForm.setCharities(lOfCharities);
 		return new ModelAndView("charity", "charityForm", charityForm);
-
 	}
 
 	@RequestMapping(value = "/asignCharities", method = RequestMethod.POST)
@@ -53,33 +46,20 @@ public class CharityComtroller {
 		System.out.println("charity id " + charityId);
 		System.out.println("empId " + empId);
 		
-		List<Employee> lOfMyEmployees  = (List<Employee>)session.getAttribute("lOfEmployees");
-		List<Charity> lOfMyCharities = (List<Charity>)session.getAttribute("lOfCharities");
-		
-		Charity ch = new Charity();
+		Map<Integer, Charity> mOfCharities = (Map<Integer, Charity>)session.getAttribute("mOfCharities");
 		int reqCharity = Integer.parseInt(charityId);
-		for (Charity c : lOfMyCharities) {
-			if (c.getCharityId() == reqCharity) {
-				ch.setCharityId(c.getCharityId());
-				ch.setCharityName(c.getCharityName());
-				break;
-			}
-		}
-		for (Employee e : lOfMyEmployees) {
-			if (e.getNiNumber().equals(empId)) {
-				List<Charity> chars = e.getCharities();
-				chars.add(ch);
-				e.setCharities(chars);
-				break;
-			}
-		}
+		Charity ch = mOfCharities.get(reqCharity);
 		
+		Map<String, Employee> mOfEmployees = (Map<String, Employee>)session.getAttribute("mOfEmployees");
+		Employee e = mOfEmployees.get(empId);
+		e.getCharities().add(ch);
+		List<Employee> lOfEmployees = new ArrayList<Employee>();
+		for (Map.Entry<String, Employee> entry : mOfEmployees.entrySet()) {
+			lOfEmployees.add(entry.getValue());
+		}
 		EmployeeForm employeeForm = new EmployeeForm();
-		employeeForm.setEmployees(lOfMyEmployees);
-		
-		
+		employeeForm.setEmployees(lOfEmployees);
 		return new ModelAndView("employee", "employeeForm", employeeForm);
-
 	}
 	
 }

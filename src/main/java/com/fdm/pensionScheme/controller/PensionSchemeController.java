@@ -2,7 +2,9 @@ package com.fdm.pensionScheme.controller;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,34 @@ public class PensionSchemeController {
 			e.printStackTrace();
 		}
 		return lOfEmployees;
+	}
+	
+	@GetMapping("/mappedemployees")
+	public Map<String, Employee> getMapOfEmpoyees() {
+		LoadEmployeeData loadData = new LoadEmployeeData();
+		Map<String, Employee> mOfEmployees = new HashMap<String, Employee>();
+		
+		try {
+			mOfEmployees = loadData.readFileAsMap("src/test/resources/employee.csv");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mOfEmployees;
+	}
+	
+	@GetMapping("/mappedcharities")
+	public Map<Integer, Charity>  getMapOfCharities() {
+		LoadCharityData loadData = new LoadCharityData();
+		Map<Integer, Charity> mOfCharities = new HashMap<Integer, Charity>();
+		
+		try {
+			mOfCharities = loadData.readFileAsMap("src/test/resources/charity.csv");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mOfCharities;
 	}
 	
 	@GetMapping("/charities")

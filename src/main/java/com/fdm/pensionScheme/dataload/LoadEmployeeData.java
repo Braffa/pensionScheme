@@ -5,12 +5,27 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.fdm.pensionScheme.beans.Employee;
 
 public class LoadEmployeeData {
+	
+	public Map<String, Employee>  readFileAsMap(String filePath) throws FileNotFoundException {
+		Map<String, Employee> mOfEmployees = new HashMap<String, Employee>();
+		Scanner in = new Scanner(new FileReader(filePath));
+		while (in.hasNextLine()) {
+			String line = in.nextLine().trim();
+			String[] employeeDetails = parseLine(line);
+			Employee employee = createEmployee(employeeDetails);
+			mOfEmployees.put(employee.getNiNumber(), employee);
+		}
+		in.close();
+		return mOfEmployees;
+	}
 
 	public List<Employee>  readFile(String filePath) throws FileNotFoundException {
 		List<Employee> lOfEmployees = new ArrayList<Employee>();

@@ -2,6 +2,7 @@ package com.fdm.pensionScheme.beans;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Employee {
@@ -15,7 +16,7 @@ public class Employee {
 	double employeeContribution;
 	double employerContribution;
 	
-	List<Charity> charities; 
+	HashSet<Charity> charities; 
 
 	public Employee(String firstName, String lastName, String niNumber, LocalDate dateOfBirth,
 			LocalDate employmentStartDate, double salary, double employeeContribution, double employerContribution) {
@@ -28,7 +29,7 @@ public class Employee {
 		this.salary = salary;
 		this.employeeContribution = employeeContribution;
 		this.employerContribution = employerContribution;
-		this.charities = new ArrayList<Charity>();
+		this.charities = new HashSet<Charity>();
 	}
 
 	public String getFirstName() {
@@ -99,11 +100,11 @@ public class Employee {
 		this.charities.add(charity);
 	}
 
-	public List<Charity> getCharities() {
+	public HashSet<Charity> getCharities() {
 		return charities;
 	}
 
-	public void setCharities(List<Charity> charities) {
+	public void setCharities(HashSet<Charity> charities) {
 		this.charities = charities;
 	}
 
